@@ -29,28 +29,17 @@ public class StringChecker
 
 	public boolean findLetter(char c)
 	{
-		int check = word.indexOf(c);
-		int len = word.length();
-		if  (check <= len) {
-			return true;
-		}
-		return false;
+		return word.indexOf(c) >= 0;
 	}
 
 	public boolean findSubString(String s)
 	{
-		int check = word.indexOf(s);
-		int len = word.length();
-		if  (check <= len) {
-			return true;
-
-		}
-		return false;
+		return word.indexOf(s) >= 0;
 		
 	}
 
  	public String toString()
  	{
- 		return "\n\n";
+ 		return word;
 	}
 }
