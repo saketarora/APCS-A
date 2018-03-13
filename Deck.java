@@ -11,6 +11,7 @@ public class Deck {
 	/**
 	 * cards contains all the cards in the deck.
 	 */
+	//private List<Card> cards;
 	private List<Card> cards;
 
 	/**
@@ -29,10 +30,28 @@ public class Deck {
 	 * @param suits is an array containing all of the card suits.
 	 * @param values is an array containing all of the card point values.
 	 */
-	public Deck(String[] ranks, String[] suits, int[] values) {
+	public Deck(ArrayList<String> ranks, ArrayList<String> suits, ArrayList<Integer> values) {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
+		ArrayList<Card> deckar;
+		for (int i = 0; i < ranks.size(); i++){
+			for (int j = 0; j < suits.size(); j++ ){
+				Card deck = new Card(ranks.get(i), suits.get(i), values.get(i));
+				deckar = deckar.add(deck);
+			}
+				
+		}
+		cards = deckar;
+		
 	}
-
+	/*public ArrayList<Card> setnewarray(Card newcard, ArrayList<Card> deckar){
+		ArrayList<Card> newcardar = null;
+		for (int i = 0; i < deckar.size(); i++){
+			newcardar .get(i) = deckar.get(i);
+		}
+		newcardar.get(deckar.size()) = newcard;
+		return newcardar;
+	}
+	*/
 
 	/**
 	 * Determines if this deck is empty (no undealt cards).
@@ -40,6 +59,10 @@ public class Deck {
 	 */
 	public boolean isEmpty() {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
+		if (size == 0){
+			return true;
+		}
+		return false;
 	}
 
 	/**
@@ -48,6 +71,7 @@ public class Deck {
 	 */
 	public int size() {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
+		return size;
 	}
 
 	/**
@@ -56,6 +80,14 @@ public class Deck {
 	 */
 	public void shuffle() {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 4 *** */
+		for (int k = cards.size() - 1; k>=0;k--){
+			int check = k+1;
+			int start = 0;
+			int randPost = (int)(Math.random()* check) + start;
+			Card temporary = cards.get(k);
+			cards.set(randPost, temporary);
+			size = cards.size();
+		}
 	}
 
 	/**
@@ -65,6 +97,12 @@ public class Deck {
 	 */
 	public Card deal() {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
+		if (isEmpty()){
+			return null;
+		}
+		size--;
+		Card returned= cards.get(size);
+		return returned;
 	}
 
 	/**
@@ -76,7 +114,7 @@ public class Deck {
 		String rtn = "size = " + size + "\nUndealt cards: \n";
 
 		for (int k = size - 1; k >= 0; k--) {
-			rtn = rtn + cards.get(k);
+			rtn = rtn + cards.size();
 			if (k != 0) {
 				rtn = rtn + ", ";
 			}
@@ -88,7 +126,7 @@ public class Deck {
 
 		rtn = rtn + "\nDealt cards: \n";
 		for (int k = cards.size() - 1; k >= size; k--) {
-			rtn = rtn + cards.get(k);
+			rtn = rtn + cards.size();
 			if (k != size) {
 				rtn = rtn + ", ";
 			}
